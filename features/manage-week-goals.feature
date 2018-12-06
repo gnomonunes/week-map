@@ -5,10 +5,5 @@ Feature: manage week goals
   So I can keep track of my objectives
 
   Scenario: View goals list
-    Given the following goals for the current week exists:
-    | description                   |
-    | finish project first feature  |
-    | work out at least 3 day       |
-
     When I'm lookin at at the current week
     Then I can see the list of goals
