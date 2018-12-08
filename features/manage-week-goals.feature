@@ -9,7 +9,7 @@ Feature: manage week goals
     | description                   |
     | finish project first feature  |
     | work out at least 3 day       |
-    When I'm lookin at at the current week
+    When I go to the current week
     Then I can see the list of goals:
     | description                   |
     | finish project first feature  |
