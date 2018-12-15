@@ -1,6 +1,6 @@
 class Api::V1::WeeksController < ApplicationController
   def index
-    render json: Goal.all
+    render json: {goals: Goal.all}
   end
 
   private

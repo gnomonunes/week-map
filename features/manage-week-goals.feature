@@ -4,6 +4,7 @@ Feature: manage week goals
   I want to manage the goals for my week
   So I can keep track of my objectives
 
+  @javascript
   Scenario: View goals list
     Given the following goals for the current week exists:
     | description                   |

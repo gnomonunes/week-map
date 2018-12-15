@@ -5,6 +5,6 @@ end
 def resolve_path resource_description
   case resource_description
   when 'the current week'
-    api_v1_weeks_path
+    root_path
   end
 end
