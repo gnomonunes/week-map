@@ -19,4 +19,7 @@ Feature: manage week goals
   @javascript
   Scenario: Add new week goal
     Given I am looking at the current week
-    Then I can see a field to add a new goal
+    Then I can see a form to add a new goal
+    And when I fill the description field with 'do the laundry'
+    And click 'Add'
+    Then I see 'do the laundry' in the goals list
