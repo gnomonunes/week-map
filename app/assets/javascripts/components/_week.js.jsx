@@ -17,6 +17,7 @@ class Week extends React.Component {
     return (
       <div>
         <Goals goals={this.state.goals} />
+        <NewGoal />
       </div>
     )
   }

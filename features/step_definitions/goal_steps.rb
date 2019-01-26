@@ -7,3 +7,7 @@ Then /I can see the list of goals/ do |goals_table|
     expect(page).to have_content(goal[:description])
   end
 end
+
+Then /I can see a field to add a new goal/ do
+  expect(page).to have_selector("input.new-goal-description")
+end

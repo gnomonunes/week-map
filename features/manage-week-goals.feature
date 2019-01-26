@@ -5,7 +5,7 @@ Feature: manage week goals
   So I can keep track of my objectives
 
   @javascript
-  Scenario: View goals list
+  Scenario: View week goals list
     Given the following goals for the current week exists:
     | description                   |
     | finish project first feature  |
@@ -15,3 +15,8 @@ Feature: manage week goals
     | description                   |
     | finish project first feature  |
     | work out at least 3 day       |
+
+  @javascript
+  Scenario: Add new week goal
+    Given I am looking at the current week
+    Then I can see a field to add a new goal
