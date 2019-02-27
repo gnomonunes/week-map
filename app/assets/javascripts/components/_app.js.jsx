@@ -5,6 +5,28 @@ class App extends React.Component {
     this.state = {
       goals: []
     }
+
+    this.handleFormSubmit = this.handleFormSubmit.bind(this)
+  }
+
+  handleFormSubmit(description) {
+    let body = JSON.stringify({goal: {description: description}})
+
+    fetch('/api/v1/weeks/1/goals', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: body
+    })
+      .then(response => response.json())
+      .then(goal => this.addNewGoal(goal))
+  }
+
+  addNewGoal(goal) {
+    this.setState({
+      goals: this.state.goals.concat(goal)
+    })
   }
 
   componentDidMount() {
@@ -17,7 +39,7 @@ class App extends React.Component {
     return (
       <div>
         <Goals goals={this.state.goals} />
-        <NewGoal />
+        <NewGoal handleFormSubmit={this.handleFormSubmit} />
       </div>
     )
   }
