@@ -6,12 +6,12 @@ class App extends React.Component {
       goals: []
     }
 
-    this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    this.handleCreateGoal = this.handleCreateGoal.bind(this)
     this.handleUpdateGoal = this.handleUpdateGoal.bind(this)
     this.handleDeleteGoal = this.handleDeleteGoal.bind(this)
   }
 
-  handleFormSubmit(description) {
+  handleCreateGoal(description) {
     let body = JSON.stringify({goal: {description: description}})
 
     fetch('/api/v1/weeks/1/goals', {
@@ -88,7 +88,7 @@ class App extends React.Component {
           handleUpdateGoal={this.handleUpdateGoal}
           handleDeleteGoal={this.handleDeleteGoal}
         />
-        <NewGoal handleFormSubmit={this.handleFormSubmit} />
+        <NewGoal handleCreateGoal={this.handleCreateGoal} />
       </div>
     )
   }
