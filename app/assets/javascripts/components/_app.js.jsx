@@ -7,6 +7,7 @@ class App extends React.Component {
     }
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    this.handleUpdateGoal = this.handleUpdateGoal.bind(this)
     this.handleDeleteGoal = this.handleDeleteGoal.bind(this)
   }
 
@@ -22,6 +23,33 @@ class App extends React.Component {
     })
       .then(response => response.json())
       .then(goal => this.addNewGoal(goal))
+  }
+
+  handleUpdateGoal(goal) {
+    let body = JSON.stringify({goal: goal})
+
+    fetch(`/api/v1/weeks/1/goals/${goal.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: body
+    })
+      .then(response => this.updateGoals(goal))
+  }
+
+  updateGoals(updatedGoal) {
+    goals = this.state.goals.map(goal => {
+      if (goal.id === updatedGoal.id) {
+        goal = updatedGoal
+      }
+
+      return goal
+    })
+
+    this.setState({
+      goals: goals
+    })
   }
 
   handleDeleteGoal(goal_id) {
@@ -55,7 +83,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Goals goals={this.state.goals} handleDeleteGoal={this.handleDeleteGoal} />
+        <Goals
+          goals={this.state.goals}
+          handleUpdateGoal={this.handleUpdateGoal}
+          handleDeleteGoal={this.handleDeleteGoal}
+        />
         <NewGoal handleFormSubmit={this.handleFormSubmit} />
       </div>
     )

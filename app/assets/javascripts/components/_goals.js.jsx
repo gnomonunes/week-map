@@ -4,12 +4,12 @@ const Goals = props => (
     <ul className="week-goals">
       {
         props.goals.map(goal => (
-          <li key={goal.id}>
-            {goal.description}
-            <button className="delete-goal" onClick={() => props.handleDeleteGoal(goal.id)}>
-              x
-            </button>
-          </li>
+          <Goal
+            key={goal.id}
+            goal={goal}
+            handleUpdateGoal={props.handleUpdateGoal}
+            handleDeleteGoal={props.handleDeleteGoal}
+          />
         ))
       }
     </ul>

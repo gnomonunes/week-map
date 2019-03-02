@@ -6,6 +6,13 @@ class Api::V1::GoalsController < ApplicationController
     render json: goal
   end
 
+  def update
+    goal = Goal.find(goal_params[:id])
+    goal.update_attributes(goal_params)
+
+    render json: goal
+  end
+
   def destroy
     @week.goals.destroy(params[:id])
     render json: {message: "goal deleted!"}
@@ -18,6 +25,6 @@ class Api::V1::GoalsController < ApplicationController
   end
 
   def goal_params
-    params.require(:goal).permit(:description)
+    params.require(:goal).permit(:id, :description)
   end
 end

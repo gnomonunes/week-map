@@ -40,3 +40,15 @@ end
 Then /I don't see '(.+)' in the goals list/ do |goal|
   expect(page).not_to have_content(goal)
 end
+
+And /click on the '(.+)' goal/ do |goal|
+  page.all(".week-goals li span", text: "work out at least 3").first.click
+end
+
+Then /I can change the goal description to '(.+)'/ do |goal|
+  find("input.edit-goal-description").set(goal)
+end
+
+And /I see '(.+)' instead/ do |goal|
+  expect(page).to have_content(goal)
+end

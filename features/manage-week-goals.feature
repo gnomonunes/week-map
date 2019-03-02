@@ -32,3 +32,12 @@ Feature: manage week goals
     Then I can see a button to delete each goal
     And when I click the delete button for 'work out at least 3 days'
     Then I don't see 'work out at least 3 days' in the goals list
+
+  @javascript
+  Scenario: Edit a goal
+    Given I am looking at the current week
+    And click on the 'work out at least 3 days' goal
+    Then I can change the goal description to 'work out at least 4 days'
+    And when I click 'Save'
+    Then I don't see 'work out at least 3 days' in the goals list
+    And I see 'work out at least 4 days' instead
