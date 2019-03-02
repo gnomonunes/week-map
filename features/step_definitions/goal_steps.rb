@@ -25,3 +25,18 @@ end
 Then /I see '(.+)' in the goals list/ do |goal|
   expect(page).to have_content(goal)
 end
+
+Then /I can see a button to delete each goal/ do
+  page.all(".week-goals li").each do |li|
+    expect(li).to have_selector(".delete-goal")
+  end
+end
+
+And /when I click the delete button for '(.+)'/ do |goal|
+  page.all(".week-goals li", text: "work out at least 3").first
+    .find(".delete-goal").click
+end
+
+Then /I don't see '(.+)' in the goals list/ do |goal|
+  expect(page).not_to have_content(goal)
+end

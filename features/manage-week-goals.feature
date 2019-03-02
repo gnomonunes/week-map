@@ -6,17 +6,17 @@ Feature: manage week goals
 
   Background:
     Given the following goals for the current week exists:
-    | description                   |
-    | finish project first feature  |
-    | work out at least 3 day       |
+    | description                     |
+    | finish project's first feature  |
+    | work out at least 3 days        |
 
   @javascript
   Scenario: View week goals list
     When I go to the current week
     Then I can see the list of goals:
-    | description                   |
-    | finish project first feature  |
-    | work out at least 3 day       |
+    | description                     |
+    | finish project's first feature  |
+    | work out at least 3 day         |
 
   @javascript
   Scenario: Add new week goal
@@ -25,3 +25,10 @@ Feature: manage week goals
     And when I fill the description field with 'do the laundry'
     And click 'Add'
     Then I see 'do the laundry' in the goals list
+
+  @javascript
+  Scenario: Delete a goal
+    Given I am looking at the current week
+    Then I can see a button to delete each goal
+    And when I click the delete button for 'work out at least 3 days'
+    Then I don't see 'work out at least 3 days' in the goals list
