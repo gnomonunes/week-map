@@ -1,8 +1,7 @@
 class Api::V1::WeeksController < ApplicationController
   def index
-    # temp solution for tests to pass
-    goals = Goal.all.to_a
-    render json: { goals: goals }
+    @weeks = Week.all
+    render_jsonapi @weeks
   end
 
   private
