@@ -93,4 +93,12 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+  RSpec::Matchers.define :be_jsonapi_response_for do |model|
+    match do |actual|
+      parsed_actual = JSON.parse(actual.body)
+      parsed_actual.dig('data', 'type') == model &&
+        parsed_actual.dig('data', 'attributes').is_a?(Hash) &&
+        parsed_actual.dig('data', 'relationships').is_a?(Hash)
+    end
+  end
 end
