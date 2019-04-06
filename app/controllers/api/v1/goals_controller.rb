@@ -22,7 +22,8 @@ class Api::V1::GoalsController < ApplicationController
     goal = Goal.find(goal_params[:id])
     goal.update_attributes(goal_attributes)
 
-    render json: goal
+    location = api_v1_week_goal_path({id: goal.id})
+    render_jsonapi goal, location: location
   end
 
   def destroy
