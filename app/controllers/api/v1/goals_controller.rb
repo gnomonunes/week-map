@@ -14,7 +14,7 @@ class Api::V1::GoalsController < ApplicationController
   end
 
   def show
-    goal = Goal.find(params[:id])
+    goal = @week.goals.find(params[:id])
     render_jsonapi goal
   end
 
@@ -28,7 +28,8 @@ class Api::V1::GoalsController < ApplicationController
 
   def destroy
     @week.goals.destroy(params[:id])
-    render json: {message: "goal deleted!"}
+
+    head :no_content
   end
 
   private
