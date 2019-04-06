@@ -1,6 +1,6 @@
 class Api::V1::WeeksController < ApplicationController
   def index
-    @weeks = Week.all
+    @weeks = Week.all.includes(:goals)
     render_jsonapi @weeks
   end
 

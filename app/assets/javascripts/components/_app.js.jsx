@@ -12,7 +12,14 @@ class App extends React.Component {
   }
 
   handleCreateGoal(description) {
-    let body = JSON.stringify({goal: {description: description}})
+    let body = JSON.stringify({
+      data: {
+        type: "goal",
+        attributes: {
+          description: description
+        }
+      }
+    })
 
     fetch('/api/v1/weeks/1/goals', {
       method: 'POST',
@@ -22,11 +29,22 @@ class App extends React.Component {
       body: body
     })
       .then(response => response.json())
-      .then(goal => this.addNewGoal(goal))
+      .then(jsonResponse => this.addNewGoal({
+        id: jsonResponse.data.id,
+        description: jsonResponse.data.attributes.description
+      }))
   }
 
   handleUpdateGoal(goal) {
-    let body = JSON.stringify({goal: goal})
+    let body = JSON.stringify({
+      data: {
+        id: goal.id,
+        type: "goal",
+        attributes: {
+          description: goal.description
+        }
+      }
+    })
 
     fetch(`/api/v1/weeks/1/goals/${goal.id}`, {
       method: 'PUT',
@@ -77,7 +95,7 @@ class App extends React.Component {
   componentDidMount() {
     fetch('/api/v1/weeks.json')
       .then(response => response.json())
-      .then(data => this.setState({ goals: data.goals }))
+      .then(jsonResponse => this.setState({ goals: jsonResponse.data[0].attributes.goals }))
   }
 
   render() {

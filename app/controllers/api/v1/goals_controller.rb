@@ -13,7 +13,7 @@ class Api::V1::GoalsController < ApplicationController
 
   def update
     goal = Goal.find(goal_params[:id])
-    goal.update_attributes(goal_params)
+    goal.update_attributes(goal_attributes)
 
     render json: goal
   end
@@ -34,8 +34,8 @@ class Api::V1::GoalsController < ApplicationController
   end
 
   def goal_params
-    params.require(:data).permit(:type, {
-      attributes: [:id, :description]
+    params.require(:data).permit(:type, :id, {
+      attributes: [:description]
     })
   end
 end
