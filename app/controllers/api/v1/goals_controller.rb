@@ -8,7 +8,14 @@ class Api::V1::GoalsController < ApplicationController
 
   def create
     goal = @week.goals.create(goal_attributes)
-    render_jsonapi goal, status: :created, location: goal
+
+    location = api_v1_week_goal_path({id: goal.id})
+    render_jsonapi goal, status: :created, location: location
+  end
+
+  def show
+    goal = Goal.find(params[:id])
+    render_jsonapi goal
   end
 
   def update

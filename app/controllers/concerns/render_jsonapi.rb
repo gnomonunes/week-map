@@ -20,7 +20,7 @@ module RenderJsonapi
       serialized_collection = serializer_class_name.new(collection, serializer_options)
       status = options[:status] || :ok
 
-      render jsonapi: serialized_collection, status: status
+      render jsonapi: serialized_collection, status: status, location: options[:location]
     end
 
   end
