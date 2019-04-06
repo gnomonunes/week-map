@@ -41,9 +41,10 @@ gem 'pg'
 # Uses Fast JSON API for serialization. Read more: https://github.com/Netflix/fast_jsonapi
 gem 'fast_jsonapi'
 
+# Add 'pry' gem for debugging
+gem 'pry', '~> 0.12.2'
+
 group :development, :test do
-  # Add 'pry' gem for debugging
-  gem 'pry', '~> 0.12.2'
 
   gem 'rspec-rails', '~> 3.5'
   gem 'cucumber-rails', require: false
