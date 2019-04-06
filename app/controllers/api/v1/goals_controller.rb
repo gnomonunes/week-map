@@ -1,9 +1,14 @@
 class Api::V1::GoalsController < ApplicationController
   before_action :set_week
 
+  def index
+    goals = @week.goals
+    render_jsonapi goals
+  end
+
   def create
-    goal = @week.goals.create(goal_params)
-    render json: goal
+    goal = @week.goals.create(goal_attributes)
+    render_jsonapi goal, status: :created, location: goal
   end
 
   def update
@@ -24,7 +29,13 @@ class Api::V1::GoalsController < ApplicationController
     @week = Week.find(params[:week_id])
   end
 
+  def goal_attributes
+    goal_params[:attributes] || {}
+  end
+
   def goal_params
-    params.require(:goal).permit(:id, :description)
+    params.require(:data).permit(:type, {
+      attributes: [:id, :description]
+    })
   end
 end
